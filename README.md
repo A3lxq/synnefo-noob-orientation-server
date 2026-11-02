@@ -16,11 +16,16 @@ three are easy; difficulty then climbs.
 **This machine is intentionally vulnerable. Run it only on an isolated
 network.**
 
-## Status
+## Running it
 
-This box ships as a VM appliance (OVA) — see the `vm/` directory once it's
-built. There is no Docker build in this repo (an earlier Docker build was
-removed; a Docker version may be added back separately).
+Download the `.ova` from this repo's [Releases](../../releases) page
+and import it into VirtualBox (File > Import Appliance) or VMware
+Workstation/Fusion (File > Open). It boots and sets itself up
+automatically — nothing to configure. See [`vm/README.md`](vm/README.md)
+for details and for rebuilding it from source.
+
+There is no Docker build in this repo (an earlier one was removed; a
+Docker version may be added back separately).
 
 ## Flag format
 
@@ -39,6 +44,8 @@ removed; a Docker version may be added back separately).
 - [`docs/hints.md`](docs/hints.md) — progressive hints, spoiler-light
 - [`docs/tools.md`](docs/tools.md) — what each tool in the requirements list is for
 - [`docs/writeup/WRITEUP.md`](docs/writeup/WRITEUP.md) — full spoiler walkthrough
-- [`flags/generate_flags.py`](flags/generate_flags.py) — the per-deployment
-  flag derivation scheme (HMAC-SHA256 of a deployment secret), used by
-  `organizer/verify.py`
+- [`flags/generate_flags.py`](flags/generate_flags.py) — the flag
+  derivation scheme (HMAC-SHA256 of a release secret), used by
+  `organizer/verify.py`. The OVA's flags are static (same release
+  secret baked in at build time), same convention as The Forgotten
+  Administrator's own VM.
