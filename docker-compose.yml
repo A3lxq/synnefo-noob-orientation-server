@@ -1,0 +1,21 @@
+services:
+  orientation-server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: halcyon-noob-orientation
+    environment:
+      - CTF_SECRET=${CTF_SECRET}
+    ports:
+      - "2201:22"
+      - "2101:21"
+      - "8001:80"
+      - "20000-20010:20000-20010"
+    networks:
+      - orientation-net
+    # Deliberately vulnerable teaching target: do not expose beyond an
+    # isolated lab network / NAT'd host-only interface.
+
+networks:
+  orientation-net:
+    driver: bridge
