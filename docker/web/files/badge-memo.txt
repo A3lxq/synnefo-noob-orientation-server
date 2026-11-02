@@ -1,9 +1,0 @@
-MEMO — Badge Office
-To: All site coordinators
-Re: Temporary badge PINs
-
-Until the new system is live, temporary badge PINs for this site are set to
-the year this building opened: a 4-digit year. Nothing clever, we know. Tell
-new contractors not to reuse it anywhere important.
-
-(Building opened 1973 — see the plaque in the lobby if you forget.)

@@ -1,7 +1,0 @@
-from: helpdesk
-these were rotated out last year, don't bother trying them anywhere —
-admin / Password123!
-guest / guest
-jmiller / Welcome2024
-
-(if any of these still worked we'd have bigger problems than a CTF box)

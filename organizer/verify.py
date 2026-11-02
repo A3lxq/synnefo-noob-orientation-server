@@ -7,7 +7,7 @@ Usage:
 """
 import os
 import sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "docker"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "flags"))
 from generate_flags import flag_for  # noqa: E402
 
 if __name__ == "__main__":
