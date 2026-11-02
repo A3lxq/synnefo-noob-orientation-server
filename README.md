@@ -20,10 +20,20 @@ internet).
 
 ## Requirements
 
-- Docker + Docker Compose
+- Docker + Docker Compose — **or** a hypervisor (VirtualBox / VMware)
+  if you'd rather import the pre-built VM appliance (see below)
 - A player machine with `nmap`, `curl`, `ftp`/`lftp`, a web browser,
   `base64`, a hex/cipher tool (e.g. CyberChef), `fcrackzip` or `john`,
   `hashcat` or `john` + a wordlist (e.g. `rockyou.txt`), `openssl`, `ssh`
+
+## Option B: pre-built VM (OVA)
+
+Don't want to run Docker yourself? Download the `.ova` from this repo's
+[Releases](../../releases) page and import it into VirtualBox (File >
+Import Appliance) or VMware Workstation/Fusion (File > Open). It boots,
+sets itself up, and generates its own fresh flags automatically —
+nothing to configure. See [`vm/README.md`](vm/README.md) for details
+and for rebuilding it from source. Same rule applies: isolated network only.
 
 ## Starting the box
 

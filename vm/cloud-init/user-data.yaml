@@ -1,0 +1,46 @@
+#cloud-config
+# First-boot configuration for the "noob-orientation" CTF VM (Halcyon
+# Protocol series). This box is delivered as "Docker-in-a-VM": the
+# exact same docker-compose project that was built and verified on the
+# host, running inside a standalone VM instead, so the whole appliance
+# is a single importable OVA with no host Docker dependency.
+#
+# This file only establishes accounts, packages, and SSH policy. The
+# box itself is deployed by vm/scripts/provision.sh (rsync + a remote
+# script), then started automatically on every boot by a systemd unit.
+
+hostname: noob-orientation
+manage_etc_hosts: true
+
+users:
+  - name: ctfbuilder
+    gecos: "CTF build/maintenance account (instructor-only, key-based)"
+    groups: [sudo]
+    # NOT "docker" -- that group doesn't exist until docker.io installs
+    # later in boot, and cloud-init's user-creation stage runs before
+    # packages are installed. ctfbuilder's full sudo already covers it.
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash
+    lock_passwd: true
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdkeCYqlhw6ffAJVjsY6IiGXJ9uiz0ZJUP6zw63aUZx ctf-instructor-build-key"
+
+chpasswd:
+  expire: false
+
+# Key-based only. The box's own vulnerabilities are the intended path
+# in, not SSH to the VM's own host OS.
+ssh_pwauth: false
+disable_root: true
+
+package_update: true
+package_upgrade: false
+packages:
+  - docker.io
+  - docker-compose-v2
+  - rsync
+
+runcmd:
+  - [systemctl, enable, docker]
+  - [systemctl, start, docker]
+  - [bash, -c, "echo 'cloud-init base config applied' > /var/log/ctf-cloudinit.log"]
